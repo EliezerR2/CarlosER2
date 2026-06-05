@@ -1,5 +1,5 @@
 // API endpoint - deploy api/comments.php to a PHP host and change this URL
-const API_URL = 'http://localhost:8000/api/comments.php';
+const API_URL = 'https://carloser2.page.gd/api/comments.php';
 
 // ==================== COMMENTS (PHP API) ====================
 
@@ -106,7 +106,7 @@ document.getElementById('contactForm')?.addEventListener('submit', async e => {
             subject: data.subject || 'Contacto desde portafolio',
             body: `Nombre: ${data.name}\nEmail: ${data.email}\n\n${data.message}`
         });
-        window.location.href = `mailto:tu@email.com?${params}`;
+        window.location.href = `mailto:eliezercarlos@email.com?${params}`;
         status.className = 'form-status success';
         status.textContent = '✅ Abriendo cliente de email...';
     }
