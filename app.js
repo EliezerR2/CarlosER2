@@ -17,7 +17,7 @@ document.querySelectorAll('a, button, .btn-primary, .btn-outline, .channel').for
     });
     el.addEventListener('mouseleave', () => {
         cursor.style.transform = 'scale(1)';
-        cursor.style.background = '#d4af37';
+        cursor.style.background = '#ff1744';
         cursorBlur.style.transform = 'scale(1)';
     });
 });
@@ -88,8 +88,8 @@ class Particle {
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        const colors = { 0: '230,57,70', 45: '212,175,55', 270: '123,47,247' };
-        ctx.fillStyle = `rgba(${colors[this.hue] || '212,175,55'}, ${this.opacity})`;
+        const colors = { 0: '255,23,68', 45: '123,47,247', 270: '123,47,247' };
+        ctx.fillStyle = `rgba(${colors[this.hue] || '255,23,68'}, ${this.opacity})`;
         ctx.fill();
     }
 }
@@ -111,7 +111,7 @@ function animate() {
                 ctx.beginPath();
                 ctx.moveTo(particles[i].x, particles[i].y);
                 ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.strokeStyle = `rgba(212,175,55, ${0.03 * (1 - dist / 120)})`;
+                ctx.strokeStyle = `rgba(255,23,68, ${0.03 * (1 - dist / 120)})`;
                 ctx.lineWidth = 0.5;
                 ctx.stroke();
             }
