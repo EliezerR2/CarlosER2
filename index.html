@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#inicio" class="logo">&lt;Dev /&gt;</a>
+            <ul>
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio" class="section">
+            <div class="hero-content">
+                <h1>Hola, soy <span class="highlight">Desarrollador</span></h1>
+                <p class="subtitle">Desarrollador web especializado en PHP, MySQL y tecnologías modernas.</p>
+                <div class="hero-actions">
+                    <a href="#proyectos" class="btn btn-primary">Ver Proyectos</a>
+                    <a href="#contacto" class="btn btn-secondary">Contactar</a>
+                </div>
+            </div>
+
+            <div class="skills">
+                <h2>Habilidades</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Backend</h3>
+                        <p>PHP, Laravel, Node.js, REST APIs</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Frontend</h3>
+                        <p>HTML, CSS, JavaScript, Bootstrap</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Bases de Datos</h3>
+                        <p>MySQL, PostgreSQL, MongoDB</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Herramientas</h3>
+                        <p>Git, Docker, Linux, Composer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="proyectos" class="section">
+            <h1>Proyectos</h1>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <h2>Sistema de Gestión</h2>
+                    <span class="tech">PHP, MySQL, Bootstrap</span>
+                    <p>Plataforma web para administración de inventarios y usuarios.</p>
+                </article>
+                <article class="project-card">
+                    <h2>API RESTful</h2>
+                    <span class="tech">PHP, Laravel, PostgreSQL</span>
+                    <p>API con autenticación JWT y documentación Swagger.</p>
+                </article>
+                <article class="project-card">
+                    <h2>Blog Personal</h2>
+                    <span class="tech">PHP, JavaScript, CSS3</span>
+                    <p>Blog con panel admin, editor markdown y comentarios.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="contacto" class="section">
+            <h1>Contacto</h1>
+            <form action="https://formspree.io/f/tu-form-id" method="POST">
+                <input type="text" name="nombre" placeholder="Tu nombre" required>
+                <input type="email" name="email" placeholder="Tu email" required>
+                <textarea name="mensaje" rows="5" placeholder="Tu mensaje" required></textarea>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+            <div class="contact-links">
+                <a href="mailto:tu@email.com">tu@email.com</a>
+                <a href="https://github.com/tuusuario" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/tuusuario" target="_blank">LinkedIn</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 - Desarrollado con PHP</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    document.querySelector(`.nav-link[href="#${entry.target.id}"]`)?.classList.add('active');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.section').forEach(s => observer.observe(s));
+    </script>
+</body>
+</html>
