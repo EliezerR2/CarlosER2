@@ -1,22 +1,70 @@
-// Particles
-const canvas = document.getElementById('particles');
+// Cursor
+const cursor = document.getElementById('cursor');
+const cursorBlur = document.getElementById('cursor-blur');
+
+document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    cursorBlur.style.left = e.clientX + 'px';
+    cursorBlur.style.top = e.clientY + 'px';
+});
+
+document.querySelectorAll('a, button, .btn-primary, .btn-outline, .channel').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(1.8)'; cursorBlur.style.transform = 'scale(0.5)'; });
+    el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; cursorBlur.style.transform = 'scale(1)'; });
+});
+
+// Typewriter
+const words = ['experiencias digitales', 'arquitecturas robustas', 'productos escalables', 'código impecable'];
+let wordIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+const el = document.getElementById('typewriter');
+
+function type() {
+    const current = words[wordIndex];
+    if (!isDeleting) {
+        el.textContent = current.substring(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === current.length) { isDeleting = true; setTimeout(type, 2000); return; }
+    } else {
+        el.textContent = current.substring(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) { isDeleting = false; wordIndex = (wordIndex + 1) % words.length; }
+    }
+    setTimeout(type, isDeleting ? 40 : 80);
+}
+type();
+
+// Mobile menu
+document.querySelector('.menu-toggle')?.addEventListener('click', () => {
+    document.querySelector('#navbar ul').classList.toggle('open');
+});
+
+// Particle canvas
+const canvas = document.createElement('canvas');
+canvas.style.cssText = 'position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.35';
+document.body.prepend(canvas);
 const ctx = canvas.getContext('2d');
 let particles = [];
 
-function resizeCanvas() {
+function resize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }
 
 class Particle {
-    constructor() { this.reset(); }
+    constructor() {
+        this.reset();
+    }
     reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2 + 1;
-        this.speedX = (Math.random() - 0.5) * 0.4;
-        this.speedY = (Math.random() - 0.5) * 0.4;
-        this.opacity = Math.random() * 0.5 + 0.2;
+        this.speedX = (Math.random() - 0.5) * 0.3;
+        this.speedY = (Math.random() - 0.5) * 0.3;
+        this.opacity = Math.random() * 0.4 + 0.1;
+        this.hue = Math.random() * 60 + 240;
     }
     update() {
         this.x += this.speedX;
@@ -27,114 +75,107 @@ class Particle {
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(108, 92, 231, ${this.opacity})`;
+        ctx.fillStyle = `hsla(${this.hue}, 70%, 60%, ${this.opacity})`;
         ctx.fill();
     }
 }
 
-function initParticles() {
-    resizeCanvas();
-    particles = Array.from({ length: 80 }, () => new Particle());
+function init() {
+    resize();
+    particles = Array.from({ length: 60 }, () => new Particle());
 }
 
-function animateParticles() {
+function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(p => { p.update(); p.draw(); });
-    // Links
     for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
             const dx = particles[i].x - particles[j].x;
             const dy = particles[i].y - particles[j].y;
             const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 150) {
+            if (dist < 120) {
                 ctx.beginPath();
                 ctx.moveTo(particles[i].x, particles[i].y);
                 ctx.lineTo(particles[j].x, particles[j].y);
-                ctx.strokeStyle = `rgba(108, 92, 231, ${0.08 * (1 - dist / 150)})`;
+                ctx.strokeStyle = `hsla(255, 60%, 60%, ${0.04 * (1 - dist / 120)})`;
                 ctx.lineWidth = 0.5;
                 ctx.stroke();
             }
         }
     }
-    requestAnimationFrame(animateParticles);
+    requestAnimationFrame(animate);
 }
 
-initParticles();
-animateParticles();
-window.addEventListener('resize', resizeCanvas);
+init();
+animate();
+window.addEventListener('resize', resize);
 
 // Counters
 const statNumbers = document.querySelectorAll('.stat-number');
-let countersAnimated = false;
+let countersDone = false;
 
-function animateCounters() {
-    if (countersAnimated) return;
-    countersAnimated = true;
+function runCounters() {
+    if (countersDone) return;
+    countersDone = true;
     statNumbers.forEach(el => {
         const target = parseInt(el.dataset.target);
-        const duration = 1500;
+        const duration = 1600;
         const start = performance.now();
-        function update(now) {
-            const elapsed = now - start;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            el.textContent = Math.floor(eased * target) + (target > 10 ? '+' : '+');
-            if (progress < 1) requestAnimationFrame(update);
+        function tick(now) {
+            const t = Math.min((now - start) / duration, 1);
+            const ease = 1 - Math.pow(1 - t, 3);
+            el.textContent = Math.floor(ease * target) + '+';
+            if (t < 1) requestAnimationFrame(tick);
             else el.textContent = target + '+';
         }
-        requestAnimationFrame(update);
+        requestAnimationFrame(tick);
     });
 }
 
-// Skill bars
-const bars = document.querySelectorAll('.fill');
-let barsAnimated = false;
+// Bars
+const fills = document.querySelectorAll('.fill');
+let barsDone = false;
 
-function animateBars() {
-    if (barsAnimated) return;
-    barsAnimated = true;
-    bars.forEach(bar => {
-        const w = bar.style.width;
-        bar.style.width = '0';
-        setTimeout(() => { bar.style.width = w; }, 200);
+function runBars() {
+    if (barsDone) return;
+    barsDone = true;
+    fills.forEach(bar => {
+        const w = bar.dataset.width || bar.style.width;
+        bar.style.width = '0%';
+        setTimeout(() => { bar.style.width = w + '%'; }, 200);
     });
 }
 
-// Scroll observer
-const observer = new IntersectionObserver(entries => {
+// Reveal observer
+const revealObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        if (entry.target.id === 'stats') animateCounters();
-        if (entry.target.id === 'skills') animateBars();
+        entry.target.classList.add('visible');
+        if (entry.target.closest('#stats')) runCounters();
+        if (entry.target.closest('#skills')) runBars();
     });
-}, { threshold: 0.3 });
+}, { threshold: 0.25 });
 
-document.querySelectorAll('#stats, #skills').forEach(s => observer.observe(s));
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// Nav active link
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-link');
-
+// Nav observer
 const navObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            navLinks.forEach(l => l.classList.remove('active'));
-            document.querySelector(`.nav-link[href="#${entry.target.id}"]`)?.classList.add('active');
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            const link = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+            if (link) link.classList.add('active');
         }
     });
 }, { threshold: 0.3 });
 
-sections.forEach(s => navObserver.observe(s));
+document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
 
-// Navbar hide/show on scroll
-let lastScroll = 0;
+// Navbar hide/show
+let lastY = 0;
 window.addEventListener('scroll', () => {
-    const current = window.scrollY;
     const nav = document.getElementById('navbar');
-    if (current > lastScroll && current > 100) {
-        nav.style.transform = 'translateY(-100%)';
-    } else {
-        nav.style.transform = 'translateY(0)';
-    }
-    lastScroll = current;
+    const cur = window.scrollY;
+    nav.style.transform = cur > lastY && cur > 120 ? 'translateY(-100%)' : 'translateY(0)';
+    lastY = cur;
 });

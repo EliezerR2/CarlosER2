@@ -3,178 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarlosER2 · Senior Developer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>CarlosER2 · Senior Full-Stack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="particles"></canvas>
 
-    <nav id="navbar">
-        <a href="#hero" class="logo">CE<span class="accent">.</span></a>
-        <ul>
-            <li><a href="#hero" class="nav-link">Inicio</a></li>
-            <li><a href="#stats" class="nav-link">Trayectoria</a></li>
-            <li><a href="#skills" class="nav-link">Skills</a></li>
-            <li><a href="#work" class="nav-link">Proyectos</a></li>
-            <li><a href="#contact" class="nav-link">Contacto</a></li>
-        </ul>
-        <a href="#contact" class="btn-nav">Hablemos</a>
-    </nav>
+<div id="cursor"></div>
+<div id="cursor-blur"></div>
 
-    <section id="hero">
-        <div class="hero-badge">Senior Full-Stack Developer</div>
+<nav id="navbar">
+    <a href="#hero" class="logo">CE<span class="accent">.</span></a>
+    <ul>
+        <li><a href="#hero" class="nav-link">Inicio</a></li>
+        <li><a href="#stats" class="nav-link">Trayectoria</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#work" class="nav-link">Proyectos</a></li>
+        <li><a href="#testimonials" class="nav-link">Testimonios</a></li>
+        <li><a href="#contact" class="nav-link">Contacto</a></li>
+    </ul>
+    <a href="#contact" class="btn-nav">Hablemos</a>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+</nav>
+
+<section id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-floating">
+        <div class="float-item" style="top:15%;left:8%;animation-delay:0s">✦</div>
+        <div class="float-item" style="top:25%;right:12%;animation-delay:1.5s">⚡</div>
+        <div class="float-item" style="bottom:30%;left:5%;animation-delay:.8s">◈</div>
+        <div class="float-item" style="bottom:20%;right:8%;animation-delay:2.2s">◆</div>
+        <div class="float-item pulse" style="top:40%;left:15%;animation-delay:.4s">●</div>
+    </div>
+    <div class="hero-content">
+        <div class="hero-badge">
+            <span class="dot"></span>
+            Senior Full-Stack Developer
+        </div>
         <h1>
-            Construyo<br>
-            <span class="gradient-text">experiencias digitales</span><br>
-            que scalan.
+            <span class="reveal-text">Construyo</span><br>
+            <span class="gradient-text typewriter" id="typewriter"></span><br>
+            <span class="reveal-text" style="animation-delay:.3s">que escalan.</span>
         </h1>
-        <p class="hero-desc">
-            +6 años creando arquitecturas backend robustas y productos web de alto rendimiento.
-            Especialista en PHP, ecosistema JS y cloud native.
+        <p class="hero-desc reveal-text" style="animation-delay:.5s">
+            +6 años transformando ideas en productos digitales robustos.
+            Especialista en PHP, arquitecturas distribuidas y cloud native.
         </p>
-        <div class="hero-actions">
-            <a href="#work" class="btn-primary">Ver trabajo <span class="arrow">→</span></a>
-            <a href="#contact" class="btn-outline">Contactar</a>
+        <div class="hero-actions reveal-text" style="animation-delay:.7s">
+            <a href="#work" class="btn-primary">
+                Explorar proyectos
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3L13 8L8 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 8H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            </a>
+            <a href="#contact" class="btn-outline">Contáctame</a>
         </div>
-        <div class="hero-marquee">
-            <span>PHP</span><span>·</span><span>Laravel</span><span>·</span>
-            <span>Node.js</span><span>·</span><span>React</span><span>·</span>
-            <span>TypeScript</span><span>·</span><span>PostgreSQL</span><span>·</span>
-            <span>Docker</span><span>·</span><span>AWS</span><span>·</span>
-            <span>Redis</span><span>·</span><span>GraphQL</span><span>·</span>
-            <span>Vue</span><span>·</span><span>MongoDB</span><span>·</span>
-            <span>Go</span><span>·</span><span>Kubernetes</span>
-        </div>
-    </section>
+    </div>
+    <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
 
-    <section id="stats">
-        <div class="stat">
-            <span class="stat-number" data-target="6">0</span>
-            <span class="stat-label">Años de experiencia</span>
-        </div>
-        <div class="stat">
-            <span class="stat-number" data-target="24">0</span>
-            <span class="stat-label">Proyectos completados</span>
-        </div>
-        <div class="stat">
-            <span class="stat-number" data-target="12">0</span>
-            <span class="stat-label">Clientes felices</span>
-        </div>
-        <div class="stat">
-            <span class="stat-number" data-target="8">0</span>
-            <span class="stat-label">Tech stacks dominadas</span>
-        </div>
-    </section>
+<section id="stats">
+    <div class="stat-card reveal">
+        <span class="stat-number" data-target="6">0</span>
+        <span class="stat-label">Años de experiencia</span>
+        <div class="stat-glow"></div>
+    </div>
+    <div class="stat-card reveal">
+        <span class="stat-number" data-target="24">0</span>
+        <span class="stat-label">Proyectos entregados</span>
+        <div class="stat-glow"></div>
+    </div>
+    <div class="stat-card reveal">
+        <span class="stat-number" data-target="12">0</span>
+        <span class="stat-label">Clientes satisfechos</span>
+        <div class="stat-glow"></div>
+    </div>
+    <div class="stat-card reveal">
+        <span class="stat-number" data-target="8">0</span>
+        <span class="stat-label">Tech stacks dominadas</span>
+        <div class="stat-glow"></div>
+    </div>
+</section>
 
-    <section id="skills">
-        <h2 class="section-title">Stack <span class="accent">Tecnológico</span></h2>
-        <p class="section-sub">Las herramientas con las que construyo productos robustos y escalables.</p>
-        <div class="skills-grid">
-            <div class="skill-group">
-                <h3>Backend</h3>
-                <div class="skill-bar"><span>PHP</span><div class="bar"><div class="fill" style="width:95%"></div></div></div>
-                <div class="skill-bar"><span>Laravel</span><div class="bar"><div class="fill" style="width:92%"></div></div></div>
-                <div class="skill-bar"><span>Node.js</span><div class="bar"><div class="fill" style="width:85%"></div></div></div>
-                <div class="skill-bar"><span>Python</span><div class="bar"><div class="fill" style="width:75%"></div></div></div>
+<section id="skills">
+    <div class="section-label reveal">Tecnologías</div>
+    <h2 class="section-title reveal">Mi <span class="gradient-text">arsenal técnico</span></h2>
+    <p class="section-sub reveal">Cada herramienta elegida para rendimiento, escalabilidad y mantenibilidad.</p>
+    <div class="skills-grid">
+        <div class="skill-group reveal">
+            <h3>🔷 Backend</h3>
+            <div class="skill-bar"><span>PHP</span><span class="pct">95%</span><div class="bar"><div class="fill" data-width="95"></div></div></div>
+            <div class="skill-bar"><span>Laravel</span><span class="pct">92%</span><div class="bar"><div class="fill" data-width="92"></div></div></div>
+            <div class="skill-bar"><span>Node.js</span><span class="pct">85%</span><div class="bar"><div class="fill" data-width="85"></div></div></div>
+            <div class="skill-bar"><span>Python</span><span class="pct">75%</span><div class="bar"><div class="fill" data-width="75"></div></div></div>
+        </div>
+        <div class="skill-group reveal">
+            <h3>🎨 Frontend</h3>
+            <div class="skill-bar"><span>JS / TypeScript</span><span class="pct">90%</span><div class="bar"><div class="fill" data-width="90"></div></div></div>
+            <div class="skill-bar"><span>React</span><span class="pct">82%</span><div class="bar"><div class="fill" data-width="82"></div></div></div>
+            <div class="skill-bar"><span>Vue</span><span class="pct">78%</span><div class="bar"><div class="fill" data-width="78"></div></div></div>
+            <div class="skill-bar"><span>Tailwind / CSS</span><span class="pct">88%</span><div class="bar"><div class="fill" data-width="88"></div></div></div>
+        </div>
+        <div class="skill-group reveal">
+            <h3>☁️ Infra & Datos</h3>
+            <div class="skill-bar"><span>PostgreSQL</span><span class="pct">90%</span><div class="bar"><div class="fill" data-width="90"></div></div></div>
+            <div class="skill-bar"><span>Docker / K8s</span><span class="pct">88%</span><div class="bar"><div class="fill" data-width="88"></div></div></div>
+            <div class="skill-bar"><span>AWS</span><span class="pct">80%</span><div class="bar"><div class="fill" data-width="80"></div></div></div>
+            <div class="skill-bar"><span>Redis / RabbitMQ</span><span class="pct">82%</span><div class="bar"><div class="fill" data-width="82"></div></div></div>
+        </div>
+    </div>
+</section>
+
+<section id="work">
+    <div class="section-label reveal">Portafolio</div>
+    <h2 class="section-title reveal">Proyectos <span class="gradient-text">destacados</span></h2>
+    <p class="section-sub reveal">Productos reales con impacto medible. Cada línea de código tiene un propósito.</p>
+    <div class="work-grid">
+        <article class="work-card reveal">
+            <div class="work-preview" style="background:radial-gradient(ellipse at 30% 20%,#1a1a3e,#0a0a18)">
+                <div class="work-icon-box">⚙️</div>
+                <div class="work-shine"></div>
             </div>
-            <div class="skill-group">
-                <h3>Frontend</h3>
-                <div class="skill-bar"><span>JavaScript/TS</span><div class="bar"><div class="fill" style="width:90%"></div></div></div>
-                <div class="skill-bar"><span>React</span><div class="bar"><div class="fill" style="width:82%"></div></div></div>
-                <div class="skill-bar"><span>Vue</span><div class="bar"><div class="fill" style="width:78%"></div></div></div>
-                <div class="skill-bar"><span>Tailwind</span><div class="bar"><div class="fill" style="width:88%"></div></div></div>
+            <div class="work-body">
+                <div class="work-tags"><span>PHP</span><span>Laravel</span><span>MySQL</span></div>
+                <h3>Sistema de Gestión Empresarial</h3>
+                <p>ERP modular multi-sucursal con facturación electrónica, dashboards en tiempo real y +200 usuarios activos.</p>
+                <div class="work-metrics">
+                    <span><strong>99.9%</strong> uptime</span>
+                    <span><strong>40%</strong> + eficiencia</span>
+                </div>
+                <a href="#" class="work-link">Ver caso de estudio →</a>
             </div>
-            <div class="skill-group">
-                <h3>Infra & Datos</h3>
-                <div class="skill-bar"><span>PostgreSQL</span><div class="bar"><div class="fill" style="width:90%"></div></div></div>
-                <div class="skill-bar"><span>Docker</span><div class="bar"><div class="fill" style="width:88%"></div></div></div>
-                <div class="skill-bar"><span>AWS</span><div class="bar"><div class="fill" style="width:80%"></div></div></div>
-                <div class="skill-bar"><span>Redis</span><div class="bar"><div class="fill" style="width:82%"></div></div></div>
+        </article>
+        <article class="work-card reveal">
+            <div class="work-preview" style="background:radial-gradient(ellipse at 70% 30%,#0f2e1a,#080e08)">
+                <div class="work-icon-box">🔌</div>
+                <div class="work-shine"></div>
             </div>
-        </div>
-    </section>
+            <div class="work-body">
+                <div class="work-tags"><span>Node.js</span><span>GraphQL</span><span>Redis</span></div>
+                <h3>API Gateway Escalable</h3>
+                <p>Arquitectura de microservicios con GraphQL federation, caché distribuida y manejo de 10k+ req/seg.</p>
+                <div class="work-metrics">
+                    <span><strong>10K+</strong> req/s</span>
+                    <span><strong>60%</strong> menos latencia</span>
+                </div>
+                <a href="#" class="work-link">Ver caso de estudio →</a>
+            </div>
+        </article>
+        <article class="work-card reveal">
+            <div class="work-preview" style="background:radial-gradient(ellipse at 50% 40%,#1a1a2e,#0a0a12)">
+                <div class="work-icon-box">📊</div>
+                <div class="work-shine"></div>
+            </div>
+            <div class="work-body">
+                <div class="work-tags"><span>React</span><span>Python</span><span>D3.js</span></div>
+                <h3>Plataforma de Analytics</h3>
+                <p>BI self-service con dashboards interactivos, procesamiento en streaming y exportación inteligente de reportes.</p>
+                <div class="work-metrics">
+                    <span><strong>1M+</strong> datos/día</span>
+                    <span><strong>50+</strong> dashboards</span>
+                </div>
+                <a href="#" class="work-link">Ver caso de estudio →</a>
+            </div>
+        </article>
+    </div>
+</section>
 
-    <section id="work">
-        <h2 class="section-title">Proyectos <span class="accent">Destacados</span></h2>
-        <p class="section-sub">Productos reales, resultados medibles, código limpio.</p>
-        <div class="work-grid">
-            <article class="work-card">
-                <div class="work-preview" style="background:linear-gradient(135deg,#1a1a3e,#0d0d2b)">
-                    <div class="work-icon">⚙️</div>
+<section id="testimonials">
+    <div class="section-label reveal">Testimonios</div>
+    <h2 class="section-title reveal">Lo que dicen <span class="gradient-text">mis clientes</span></h2>
+    <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+            <div class="testimonial-stars">★★★★★</div>
+            <p>"Transformó nuestro sistema legacy en una plataforma moderna. El proceso fue impecable y los resultados superaron expectativas."</p>
+            <div class="testimonial-author">
+                <div class="author-avatar" style="background:linear-gradient(135deg,#6c5ce7,#00bfff)">MR</div>
+                <div>
+                    <strong>María Rodríguez</strong>
+                    <span>CTO · TechCorp</span>
                 </div>
-                <div class="work-body">
-                    <div class="work-tags"><span>PHP</span><span>Laravel</span><span>MySQL</span></div>
-                    <h3>Sistema de Gestión Empresarial</h3>
-                    <p>ERP modular con facturación electrónica, control de inventarios multi-sucursal y dashboard en tiempo real.</p>
-                    <a href="#" class="work-link">Caso de estudio →</a>
-                </div>
-            </article>
-            <article class="work-card">
-                <div class="work-preview" style="background:linear-gradient(135deg,#1a2e1a,#0d1f0d)">
-                    <div class="work-icon">🔌</div>
-                </div>
-                <div class="work-body">
-                    <div class="work-tags"><span>Node.js</span><span>GraphQL</span><span>PostgreSQL</span></div>
-                    <h3>API Gateway Escalable</h3>
-                    <p>Microservicios con GraphQL federation, caching con Redis, autenticación JWT y rate limiting distribuido.</p>
-                    <a href="#" class="work-link">Caso de estudio →</a>
-                </div>
-            </article>
-            <article class="work-card">
-                <div class="work-preview" style="background:linear-gradient(135deg,#2e1a2e,#1f0d1f)">
-                    <div class="work-icon">📊</div>
-                </div>
-                <div class="work-body">
-                    <div class="work-tags"><span>React</span><span>D3.js</span><span>Python</span></div>
-                    <h3>Analytics Platform</h3>
-                    <p>Plataforma de BI con dashboards interactivos, exportación de reportes y procesamiento de datos en tiempo real.</p>
-                    <a href="#" class="work-link">Caso de estudio →</a>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="contact-card">
-            <h2 class="section-title">¿Trabajamos <span class="accent">juntos</span>?</h2>
-            <p class="section-sub">Estoy abierto a freelance, proyectos open-source o una buena taza de café virtual.</p>
-            <div class="contact-channels">
-                <a href="mailto:tu@email.com" class="channel">
-                    <span class="channel-icon">✉</span>
-                    <span class="channel-label">Email</span>
-                    <span class="channel-value">tu@email.com</span>
-                    <span class="channel-arrow">→</span>
-                </a>
-                <a href="https://github.com/EliezerR2" target="_blank" class="channel">
-                    <span class="channel-icon">&lt;/&gt;</span>
-                    <span class="channel-label">GitHub</span>
-                    <span class="channel-value">@EliezerR2</span>
-                    <span class="channel-arrow">→</span>
-                </a>
-                <a href="#" target="_blank" class="channel">
-                    <span class="channel-icon">🔗</span>
-                    <span class="channel-label">LinkedIn</span>
-                    <span class="channel-value">/in/carlos-dev</span>
-                    <span class="channel-arrow">→</span>
-                </a>
-                <a href="https://wa.me/1234567890" target="_blank" class="channel">
-                    <span class="channel-icon">💬</span>
-                    <span class="channel-label">WhatsApp</span>
-                    <span class="channel-value">+1 234 567 890</span>
-                    <span class="channel-arrow">→</span>
-                </a>
             </div>
         </div>
-    </section>
-
-    <footer>
-        <div class="footer-inner">
-            <p class="copy">© 2025 CarlosER2 · Senior Full-Stack Developer</p>
-            <p class="footer-tag">Diseñado y construido con <span class="accent">⌨️</span></p>
+        <div class="testimonial-card reveal">
+            <div class="testimonial-stars">★★★★★</div>
+            <p>"Profesionalismo y calidad técnica excepcional. Entregó antes de tiempo y el código sigue siendo mantenible años después."</p>
+            <div class="testimonial-author">
+                <div class="author-avatar" style="background:linear-gradient(135deg,#00d68f,#00bfff)">JG</div>
+                <div>
+                    <strong>Juan García</strong>
+                    <span>Founder · DevStart</span>
+                </div>
+            </div>
         </div>
-    </footer>
+        <div class="testimonial-card reveal">
+            <div class="testimonial-stars">★★★★★</div>
+            <p>"Contratarlo fue la mejor decisión técnica que tomamos. Resolvió problemas de escalabilidad que traíamos arrastrando por meses."</p>
+            <div class="testimonial-author">
+                <div class="author-avatar" style="background:linear-gradient(135deg,#ff6b6b,#6c5ce7)">AL</div>
+                <div>
+                    <strong>Ana López</strong>
+                    <span>PM · InnovaTech</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <script src="app.js"></script>
+<section id="contact">
+    <div class="section-label reveal">Contacto</div>
+    <h2 class="section-title reveal">¿Listo para <span class="gradient-text">crear algo grande</span>?</h2>
+    <p class="section-sub reveal">Estoy a un mensaje de distancia. Hablemos de tu próximo proyecto.</p>
+    <div class="contact-channels reveal">
+        <a href="mailto:tu@email.com" class="channel">
+            <span class="channel-icon">✉</span>
+            <span class="channel-info">
+                <span class="channel-label">Email</span>
+                <span class="channel-value">tu@email.com</span>
+            </span>
+            <span class="channel-arrow">→</span>
+        </a>
+        <a href="https://github.com/EliezerR2" target="_blank" class="channel">
+            <span class="channel-icon">&lt;/&gt;</span>
+            <span class="channel-info">
+                <span class="channel-label">GitHub</span>
+                <span class="channel-value">@EliezerR2</span>
+            </span>
+            <span class="channel-arrow">→</span>
+        </a>
+        <a href="#" target="_blank" class="channel">
+            <span class="channel-icon">🔗</span>
+            <span class="channel-info">
+                <span class="channel-label">LinkedIn</span>
+                <span class="channel-value">/in/carlos-dev</span>
+            </span>
+            <span class="channel-arrow">→</span>
+        </a>
+        <a href="https://wa.me/1234567890" target="_blank" class="channel">
+            <span class="channel-icon">💬</span>
+            <span class="channel-info">
+                <span class="channel-label">WhatsApp</span>
+                <span class="channel-value">+1 234 567 890</span>
+            </span>
+            <span class="channel-arrow">→</span>
+        </a>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-col">
+            <a href="#hero" class="logo">CE<span class="accent">.</span></a>
+            <p class="footer-desc">Senior Full-Stack Developer creando productos digitales que marcan la diferencia.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Navegación</h4>
+            <a href="#hero">Inicio</a>
+            <a href="#skills">Skills</a>
+            <a href="#work">Proyectos</a>
+            <a href="#contact">Contacto</a>
+        </div>
+        <div class="footer-col">
+            <h4>Redes</h4>
+            <a href="https://github.com/EliezerR2" target="_blank">GitHub</a>
+            <a href="#" target="_blank">LinkedIn</a>
+            <a href="#">Twitter / X</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 CarlosER2 · Hecho con <span class="accent">⌨️</span> y <span class="accent">☕</span></p>
+    </div>
+</footer>
+
+<script src="app.js"></script>
 </body>
 </html>
